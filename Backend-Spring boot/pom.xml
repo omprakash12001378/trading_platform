@@ -105,12 +105,14 @@
 			<version>2.6.0</version>
 		</dependency>
 
-		<!-- Spring DotEnv for automatic .env file loading -->
+		<!-- Spring DotEnv for automatic .env file loading (commented out - not needed) -->
+		<!--
 		<dependency>
-			<groupId>me.paulschwarz</groupId>
-			<artifactId>spring-dotenv</artifactId>
-			<version>4.0.0</version>
+			<groupId>io.github.cdimascio</groupId>
+			<artifactId>dotenv-spring-boot</artifactId>
+			<version>2.2.0</version>
 		</dependency>
+		-->
 
 	</dependencies>
 
