@@ -35,6 +35,12 @@
     --ring: 224 71.4% 4.1%;
 
     --radius: 0.875rem;
+
+    /* Theme specific variables for custom effects */
+    --body-gradient: radial-gradient(ellipse at top, hsl(210 40% 98%) 0%, hsl(210 40% 96%) 50%, hsl(210 40% 94%) 100%);
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(0, 0, 0, 0.1);
+    --navbar-bg: rgba(255, 255, 255, 0.85);
   }
 
   .dark {
@@ -74,6 +80,12 @@
     --warning-foreground: 220 26% 6%;
 
     --chart: 220 26% 10%;
+
+    /* Theme specific variables for custom effects */
+    --body-gradient: radial-gradient(ellipse at top, hsl(220 26% 8%) 0%, hsl(220 26% 6%) 50%, hsl(220 26% 5%) 100%);
+    --glass-bg: rgba(255, 255, 255, 0.02);
+    --glass-border: rgba(255, 255, 255, 0.06);
+    --navbar-bg: rgba(17, 24, 39, 0.85);
   }
 }
 
@@ -83,9 +95,9 @@
   }
 
   body {
-    @apply dark bg-background text-foreground overflow-x-hidden;
+    @apply bg-background text-foreground overflow-x-hidden;
     font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    background: radial-gradient(ellipse at top, hsl(220 26% 8%) 0%, hsl(220 26% 6%) 50%, hsl(220 26% 5%) 100%);
+    background: var(--body-gradient);
     background-attachment: fixed;
     letter-spacing: -0.01em;
   }
@@ -114,10 +126,10 @@
 
 /* Professional glassmorphism effect */
 .glass-effect {
-  background: rgba(255, 255, 255, 0.02);
+  background: var(--glass-bg);
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--glass-border);
 }
 
 /* Premium card hover effect */
@@ -363,7 +375,7 @@
 .navbar-blur {
   backdrop-filter: blur(24px) saturate(180%);
   -webkit-backdrop-filter: blur(24px) saturate(180%);
-  background: rgba(17, 24, 39, 0.85);
+  background: var(--navbar-bg);
   border-bottom: 1px solid rgba(16, 185, 129, 0.1);
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
 }
