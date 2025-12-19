@@ -39,7 +39,10 @@ const HeroSection = ({ auth, topGainer, topLoser }) => {
             </div>
 
             {/* Top Gainer Card */}
-            <div className="rounded-2xl glass-effect border border-emerald-500/10 p-6 flex flex-col justify-between card-hover group">
+            <div
+                onClick={() => topGainer?.id && navigate(`/market/${topGainer.id}`)}
+                className="rounded-2xl glass-effect border border-emerald-500/10 p-6 flex flex-col justify-between card-hover group cursor-pointer"
+            >
                 <div className="flex justify-between items-start">
                     <div>
                         <p className="text-sm text-gray-400 mb-1">Top Gainer (24h)</p>
@@ -62,7 +65,10 @@ const HeroSection = ({ auth, topGainer, topLoser }) => {
             </div>
 
             {/* Top Loser Card */}
-            <div className="rounded-2xl glass-effect border border-emerald-500/10 p-6 flex flex-col justify-between card-hover group">
+            <div
+                onClick={() => topLoser?.id && navigate(`/market/${topLoser.id}`)}
+                className="rounded-2xl glass-effect border border-emerald-500/10 p-6 flex flex-col justify-between card-hover group cursor-pointer"
+            >
                 <div className="flex justify-between items-start">
                     <div>
                         <p className="text-sm text-gray-400 mb-1">Top Loser (24h)</p>

@@ -23,6 +23,8 @@ import Activity from "./pages/Activity/Activity";
 import SearchCoin from "./pages/Search/Search";
 import Market from "./pages/Market/Market";
 import { shouldShowNavbar } from "./Util/shouldShowNavbar";
+import Footer from "./pages/Footer/Footer";
+import { ThemeProvider } from "./components/theme-provider";
 
 
 const routes = [
@@ -52,8 +54,7 @@ function App() {
   const showNavbar = !auth.user ? false : shouldShowNavbar(location.pathname, routes, auth.user?.role)
 
   return (
-    <>
-      {" "}
+    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       {auth.user ? (
         <>
           {showNavbar && <Navbar />}
@@ -72,9 +73,12 @@ function App() {
             <Route element={<Profile />} path="/profile" />
             <Route element={<SearchCoin />} path="/search" />
             {auth.user.role == "ROLE_ADMIN" && <Route element={<WithdrawalAdmin />} path="/admin/withdrawal" />}
+            <Route element={<ResetPasswordForm />} path="/reset-password/:session" />
+            <Route element={<PasswordUpdateSuccess />} path="/password-update-successfully" />
             <Route element={<Notfound />} path="*" />
 
           </Routes>
+          {showNavbar && <Footer />}
         </>
       ) : (
         <>
@@ -91,7 +95,7 @@ function App() {
           </Routes>
         </>
       )}
-    </>
+    </ThemeProvider>
   );
 }
 
