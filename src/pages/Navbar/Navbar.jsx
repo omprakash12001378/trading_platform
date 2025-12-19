@@ -17,6 +17,7 @@ import { useNavigate } from "react-router-dom";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import { ModeToggle } from "@/components/ui/mode-toggle";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -88,6 +89,7 @@ const Navbar = () => {
         </div>
 
         <div className="flex items-center gap-4">
+          <ModeToggle />
           <Avatar
             className="cursor-pointer h-10 w-10 ring-2 ring-emerald-500/30 hover:ring-emerald-500/60 transition-all duration-300 card-hover"
             onClick={handleNavigate}

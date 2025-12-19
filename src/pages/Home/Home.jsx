@@ -114,9 +114,9 @@ const Home = () => {
         {/* Hero Section */}
         <HeroSection auth={auth} topGainer={topGainer} topLoser={topLoser} />
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Left Side: Asset Table (2/3 width) */}
-          <div className="lg:col-span-2 space-y-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* Left Side: Asset Table (1/2 width) */}
+          <div className="space-y-6">
             <div className="flex items-center justify-between">
               <h2 className="text-2xl font-bold">Market Trends</h2>
               <div className="flex items-center gap-2">
@@ -201,18 +201,21 @@ const Home = () => {
             </div>
           </div>
 
-          {/* Right Side: Featured Coin (1/3 width) */}
+          {/* Right Side: Featured Coin (1/2 width) */}
           <div className="space-y-6">
             <h2 className="text-2xl font-bold">Featured Coin</h2>
             <div className="sticky top-24 space-y-6">
-              <div className="glass-effect rounded-2xl p-6 border border-emerald-500/10 shadow-lg shadow-emerald-500/5 card-hover">
+              <div
+                onClick={() => coin.coinDetails?.id && window.location.assign(`/market/${coin.coinDetails.id}`)}
+                className="glass-effect rounded-2xl p-6 border border-emerald-500/10 shadow-lg shadow-emerald-500/5 card-hover cursor-pointer group"
+              >
                 <div className="flex gap-4 items-center mb-6">
-                  <Avatar className="h-14 w-14 ring-2 ring-emerald-500/30">
+                  <Avatar className="h-14 w-14 ring-2 ring-emerald-500/30 group-hover:ring-emerald-500/50 transition-all">
                     <AvatarImage src={coin.coinDetails?.image?.large} />
                   </Avatar>
                   <div>
                     <div className="flex items-center gap-2">
-                      <p className="text-xl font-bold">
+                      <p className="text-xl font-bold group-hover:text-emerald-400 transition-colors">
                         {coin.coinDetails?.symbol?.toUpperCase()}
                       </p>
                       <span className="badge-premium text-xs">Rank #{coin.coinDetails?.market_cap_rank}</span>

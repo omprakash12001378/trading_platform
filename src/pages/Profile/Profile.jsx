@@ -7,6 +7,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import AccountVarificationForm from "./AccountVarificationForm";
 import {
@@ -21,7 +22,7 @@ import {
   LockIcon,
   UserCircle2Icon
 } from "lucide-react";
-import { enableTwoStepAuthentication, verifyOtp } from "@/Redux/Auth/Action";
+import { enableTwoStepAuthentication, sendResetPassowrdOTP, verifyOtp } from "@/Redux/Auth/Action";
 import { useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
@@ -46,6 +47,16 @@ const Profile = () => {
     console.log("otp  - ", otp);
     dispatch(verifyOtp({ jwt: localStorage.getItem("jwt"), otp }));
     setIsVerifyOpen(false);
+  };
+
+  const navigate = useNavigate();
+
+  const handleChangePassword = () => {
+    dispatch(sendResetPassowrdOTP({
+      sendTo: auth.user?.email,
+      verificationType: "EMAIL",
+      navigate
+    }))
   };
 
   const getInitials = (name) => {
@@ -244,7 +255,11 @@ const Profile = () => {
               <p className="text-sm text-gray-400 mb-3">
                 Last changed: Never
               </p>
-              <Button variant="outline" className="w-full border-emerald-500/30 hover:bg-emerald-500/10">
+              <Button
+                variant="outline"
+                className="w-full border-emerald-500/30 hover:bg-emerald-500/10"
+                onClick={handleChangePassword}
+              >
                 <KeyIcon className="h-4 w-4 mr-2" />
                 Change Password
               </Button>
