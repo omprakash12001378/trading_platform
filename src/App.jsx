@@ -15,7 +15,6 @@ import TwoFactorAuth from "./pages/Auth/TwoFactorAuth";
 import ResetPasswordForm from "./pages/Auth/ResetPassword";
 import PasswordUpdateSuccess from "./pages/Auth/PasswordUpdateSuccess";
 import LoginWithGoogle from "./pages/Auth/LoginWithGoogle.";
-import PaymentSuccess from "./pages/Wallet/PaymentSuccess";
 import Withdrawal from "./pages/Wallet/Withdrawal";
 import PaymentDetails from "./pages/Wallet/PaymentDetails";
 import WithdrawalAdmin from "./Admin/Withdrawal/WithdrawalAdmin";
@@ -25,6 +24,7 @@ import Market from "./pages/Market/Market";
 import { shouldShowNavbar } from "./Util/shouldShowNavbar";
 import Footer from "./pages/Footer/Footer";
 import { ThemeProvider } from "./components/theme-provider";
+import PaymentCancel from "./pages/Wallet/PaymentCancel";
 
 
 const routes = [
@@ -49,7 +49,7 @@ function App() {
 
   useEffect(() => {
     dispatch(getUser(localStorage.getItem("jwt")))
-  }, [auth.jwt])
+  }, [auth.jwt, dispatch])
 
   const showNavbar = !auth.user ? false : shouldShowNavbar(location.pathname, routes, auth.user?.role)
 
@@ -67,12 +67,13 @@ function App() {
             <Route element={<Withdrawal />} path="/withdrawal" />
             <Route element={<PaymentDetails />} path="/payment-details" />
             <Route element={<Wallet />} path="/wallet/:order_id" />
+            <Route element={<PaymentCancel />} path="/payment/cancel" />
             <Route element={<Market />} path="/market" />
             <Route element={<StockDetails />} path="/market/:id" />
             <Route element={<Watchlist />} path="/watchlist" />
             <Route element={<Profile />} path="/profile" />
             <Route element={<SearchCoin />} path="/search" />
-            {auth.user.role == "ROLE_ADMIN" && <Route element={<WithdrawalAdmin />} path="/admin/withdrawal" />}
+            {auth.user?.role === "ROLE_ADMIN" && <Route element={<WithdrawalAdmin />} path="/admin/withdrawal" />}
             <Route element={<ResetPasswordForm />} path="/reset-password/:session" />
             <Route element={<PasswordUpdateSuccess />} path="/password-update-successfully" />
             <Route element={<Notfound />} path="*" />
@@ -91,6 +92,8 @@ function App() {
             <Route element={<ResetPasswordForm />} path="/reset-password/:session" />
             <Route element={<PasswordUpdateSuccess />} path="/password-update-successfully" />
             <Route element={<TwoFactorAuth />} path="/two-factor-auth/:session" />
+            <Route element={<PaymentCancel />} path="/payment/cancel" />
+            <Route element={<Wallet />} path="/wallet/:order_id" />
             <Route element={<Notfound />} path="*" />
           </Routes>
         </>
@@ -100,5 +103,3 @@ function App() {
 }
 
 export default App;
-
-
